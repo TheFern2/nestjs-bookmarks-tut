@@ -11,6 +11,7 @@ async function bootstrap() {
     .setDescription('The bookmarks API description')
     .setVersion('1.0.0')
     .addTag('bookmarks')
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

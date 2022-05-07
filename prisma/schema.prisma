@@ -22,8 +22,14 @@ model User {
     lastName String?
 
     bookmarks Bookmark[]
+    roles Role[]
 
     @@map("users")
+}
+
+enum Role {
+    USER
+    ADMIN
 }
 
 model Bookmark {

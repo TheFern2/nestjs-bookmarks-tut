@@ -4,6 +4,11 @@ import { UserModule } from './user/user.module';
 import { BookmarkModule } from './bookmark/bookmark.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
+import { AppController } from './app.controller';
+import { CookieSerializer } from './auth/strategy';
+import { PassportModule } from '@nestjs/passport';
+import { RolesGuard } from './auth/guard';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -14,6 +19,14 @@ import { ConfigModule } from '@nestjs/config';
     UserModule,
     BookmarkModule,
     PrismaModule,
+    PassportModule.register({ session: true, defaultStrategy: 'local' }),
+  ],
+  controllers: [AppController],
+  providers: [
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: RolesGuard,
+    // },
   ],
 })
 export class AppModule {}
